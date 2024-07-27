@@ -1,0 +1,7 @@
+{
+  "name": "project-a-05",
+  "version": "1.0.0",
+  "dependencies": {
+    "@googlemaps/markerclusterer": "^2.5.0"
+  }
+}

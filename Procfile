@@ -1,0 +1,1 @@
+web: gunicorn hoos_around.wsgi

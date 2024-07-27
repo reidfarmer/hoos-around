@@ -1,0 +1,21 @@
+{% extends "map/base.html" %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'map/style.css' %}">
+    <div id="map" class="map"></div>
+    <link rel="stylesheet" type="text/css" href="{% static 'map/map.css' %}">
+    <script src="{% static 'map/createEventMap.js' %}"></script>
+    <!-- <script>
+        // Callback function for Google Maps API
+        function initCreateEventMapLoaded() {
+            initCreateEventMap();
+        }
+    </script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initCreateEventMap&v=weekly"
+        async defer
+    ></script>
+    
+    <div id="approvedEvents" style="display: none;" data-events="{{ approved_events|safe }}"></div>
+    <div id="latitudelongitude-display">Latitude and Longitude will appear here</div>
+
+{% endblock content %}

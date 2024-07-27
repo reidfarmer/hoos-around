@@ -1,0 +1,32 @@
+{% extends "map/base.html" %}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'map/style.css' %}">
+<h1 style="font-family: serif;">Unapproved Events</h1>
+
+<ul class="admin-ul">
+    {% for event in unapproved_events %}
+        <li class="admin-li">
+            <strong>Event Name: {{ event.event_name }}</strong>
+            <p>Event Description: {{ event.event_description }}</p>
+
+            <div class="button-container">
+                <form method="post" action="{% url 'approve-event' event.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Approve" class="custom-approve-btn">
+                </form>
+                <form method="post" action="{% url 'deny-event' event.id %}">
+                    {% csrf_token %}
+                    <label class="admin-label" for="deny_reason">Deny Reason:</label>
+                    <textarea class="deny-text-area" name="deny_reason" rows="4" cols="50" required></textarea>
+                    <input type="submit" value="Deny" class="custom-deny-btn">
+                </form>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home' %}" class="home-button">Back to Home</a>
+
+{% endblock %}

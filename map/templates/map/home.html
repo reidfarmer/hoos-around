@@ -1,0 +1,48 @@
+<!--
+Title: CSS Reference
+URL: https://www.w3schools.com/cssref/index.php
+This site was used to assist in the CSS implementation
+-->
+<!DOCTYPE html>
+{% extends "map/base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'map/style.css' %}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div class="pageholder">       
+        <div class="titleholder"> 
+            <div class="title" style="font-family: serif;"> 
+                <h1> Hoos Around: Find Events on Grounds </h1>
+            </div>
+        </div>
+        <div class="header" style="font-family: serif;">
+            <h3>
+                Hello, {{ user.get_full_name|default:user.username }}! You are logged in under account
+                name: {{ user.username }}
+            </h3>
+        </div>
+        <div>
+            <div style="font-family: serif; font-weight: 500;">
+                <div>Welcome to Hoos Around!</div>
+                <br>
+                <div>Hoos Around is meant for students and members of the UVA community interested finding extracurricular events on Grounds. Because it feels like so much is happening in Charlottesville at any given moment, this application serves to facilitate the process of finding events of interest. Whether you're interested in exploring music, art, food, volunteering, or just finding something to do, you have come to the right place!</div>
+                <br>
+                <div style="margin-top: 6.5px;">Check out the <strong> View Events </strong> page to search for upcoming events, or create an event via the <Strong> Create Event </Strong> page for others to see!</div>
+                <div>Created events will be reviewed and approved by admins before being displayed on the map for everyone.</div>
+                <div>The <Strong> Your Submitted Events </Strong> page displays all events you have submitted with the respective approval status.</div>
+                <div>Please note that approved events will be visible to everyone up until one day after the event start date and time.</div>
+                {% if is_admin %}
+                <div>Admin users can visit the <Strong> Approve Events </Strong> page to manage the events pending approval or the <Strong> Delete Events </Strong> page to completely remove a specific event.</div>
+                {% endif %}
+            </div>
+        </div>       
+    </div>
+</body>
+</html>
+{% endblock %}

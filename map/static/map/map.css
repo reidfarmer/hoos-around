@@ -1,0 +1,31 @@
+.title {
+    color: rgb(229, 114, 0);
+}
+
+.form {
+    width:50vw;
+    height: 100px;
+    /*background-color: #c4c4;*/
+    float: left;
+}
+
+.map {
+    width: 50vw;
+    height: 500px;
+    /*background-color: blueviolet;*/
+    float: right;
+}
+
+.event {
+    color: darkblue;
+    display: none;
+}
+
+body {
+    background-color: rgb(200, 203, 210);
+    font-family: "Courier New", serif;
+}
+
+.underlined {
+    text-decoration: underline;
+}

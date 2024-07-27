@@ -1,0 +1,26 @@
+{% extends "map/base.html" %}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'map/style.css' %}">
+<h1 style="font-family: serif;">Your Submitted Events</h1>
+
+<ul class="admin-ul">
+    {% for event in user_submitted_events %}
+        <li class="admin-li">
+            <strong>Event Name: {{ event.event_name }}</strong>
+            <p>Event Description: {{ event.event_description }}</p>
+            {% if event.approved %}
+                <span class="approved-event-submitted-events">Approved</span>
+            {% elif event.deny_reason %}
+                <span class="denied-event-submitted-events">Denial Reason: {{ event.deny_reason }}</span>
+            {% else %}
+                <span class="pending-event-submitted-events">Pending Approval</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home' %}" class="home-button">Back to Home</a>
+
+{% endblock %}

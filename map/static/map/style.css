@@ -1,0 +1,113 @@
+/*
+Title: HTML Styles - CSS
+URL: https://www.w3schools.com/html/html_css.asp
+Used to do all the CSS stuff
+*/
+
+.admin-ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-li {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+}
+
+.button-container {
+    margin-top: 10px; /* Add some top margin for spacing */
+    display: flex;
+    gap: 10px; /* Add some space between buttons */
+    flex-direction: column; /* Arrange buttons and deny reason vertically */
+}
+
+.admin-label {
+    margin-bottom: 5px;
+    display: block;
+}
+
+.deny-text-area {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px; /* Add margin to separate from label */
+}
+
+.approved-event, .approved-event-submitted-events {
+    color: #22bc22;
+    font-weight: bold;
+}
+
+.denied-event, .denied-event-submitted-events {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.pending-event, .pending-event-submitted-events {
+    color: #337ab7;
+    font-weight: bold;
+}
+
+.approved-event-submitted-events {
+    display: block;
+    margin-top: 10px;
+}
+
+.denied-event-submitted-events {
+    display: block;
+    margin-top: 10px;
+}
+
+.pending-event-submitted-events {
+    display: block;
+    margin-top: 10px;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #232D4B;
+    color: #fff;
+    border-radius: 5px;
+    font-family: serif;
+}
+
+.home-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.delete-button, .custom-create-btn, .custom-approve-btn, .custom-deny-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.custom-create-btn {
+    background-color: #E57200;
+}
+
+.custom-approve-btn {
+    background-color: #232D4B;
+}
+
+.custom-deny-btn, .delete-button {
+    background-color: #dc3545;
+}
+
+.custom-deny-btn {
+    margin-top: 5px;
+}
+
+.delete-button {
+    margin-top: 10px;
+}

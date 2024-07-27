@@ -1,0 +1,29 @@
+{% extends "map/base.html" %}
+{% load static %}
+{%  block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'map/style.css' %}">
+<div class="form">
+    <form method="post" style="font-family: serif;">
+        {% csrf_token %}
+        <h2>Create Event</h2>
+        <p style="font-size: 18px; color: #E57200;"><strong>Please place a pinpoint on the map where the event will take place</strong></p>
+        {{ form.non_form_errors }}
+        {{ form.as_p }}
+        {{ event_formset.non_form_errors }}
+        {{ event_formset.management_form }}
+
+        <button class="custom-create-btn" type="submit">Create</button>
+    </form>
+    <a href="{% url 'home' %}" class="home-button">Back to Home</a>
+</div>
+
+
+<script src="{%  static 'map/createMap.js' %}">  </script>
+<script>initCreateMap()</script>
+<div id="latitudelongitude-display" style="font-family: serif;"> Event Latitude and Longitude will appear here </div>
+<div id="map" class="map" style="transform: translateY(-75px);">
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap&v=weekly" defer></script>
+</div>
+
+
+{% endblock content %}

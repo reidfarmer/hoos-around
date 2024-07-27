@@ -1,0 +1,113 @@
+<!--
+Title: CSS Reference
+URL: https://www.w3schools.com/cssref/index.php
+This site was used to assist in the CSS implementation
+
+Title: Navbar
+URL: https://getbootstrap.com/docs/4.1/components/navbar/
+This site was used to assist in the Bootstrap implementation, especially regarding the Navbar
+-->
+
+{% csrf_token %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoos Around</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+    {% load static %}
+    {% load bootstrap5 %}
+    {% load bootstrap_icons %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'map/map.css' %}">
+</head>
+<body class="background-color">
+<header>
+    <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #232D4B; padding: 0.5em;">
+        <div class="container">
+            <div class="navbar-collapse" id="navbarToggle">
+                <div class="row align-items-center">
+                    <!-- Rotunda labels + Hoos Around-->
+                    <div class="col-md-3" style="text-align: center; padding-bottom: 10px; margin-top: 5px;">
+                        <img src="{% static 'rotunda.png' %}" width="80" height="70" style="vertical-align: middle;">
+                        <p1 class="title" style="font-weight: 700; color:#E57200;
+                            font-family: serif; font-size: 55px; vertical-align: bottom;"> Hoos Around </p1>
+                            <img src="{% static 'rotunda.png' %}" width="80" height="70" style="vertical-align: middle;">
+                    </div>
+                        {% if user.is_authenticated %}
+                        <!-- Column for navigation links -->
+                        <div class="col-md-12" style="text-align: center;">
+                            <div class="navbar-nav">
+                                <a style="text-decoration:none; color:#E57200" href="{% url 'home' %}"> Home
+                                    <span style="vertical-align: middle;">
+                                        {% bs_icon 'house' %}
+                                    </span>
+                                </a>
+                                <a style="text-decoration:none; color:#E57200" href="{% url 'map' %}"> | View Events
+                                    <span style="vertical-align: middle;">
+                                        {% bs_icon 'map' %}
+                                    </span>
+                                </a>
+                                <a style="text-decoration:none; color:#E57200" href="{% url 'createEvent' %}" > | Create Event
+                                    <span style="vertical-align: middle;">
+                                        {% bs_icon 'calendar2-plus' %}
+                                    </span>
+                                </a>
+                                {% if is_admin %}
+                                    <a style="text-decoration:none; color:#E57200" href="{% url 'unapproved-events' %}" > | Approve Events
+                                        <span style="vertical-align: middle;">
+                                            {% bs_icon 'calendar2-check' %}
+                                        </span>
+                                    </a>
+                                    <a style="text-decoration:none; color:#E57200" href="{% url 'delete-event' %}" > | Delete Events
+                                        <span style="vertical-align: middle;">
+                                            {% bs_icon 'calendar2-x' %}
+                                        </span>
+                                    </a>
+                                {% endif %}
+                                <a style="text-decoration:none; color:#E57200" href="{% url 'user-events' %}" > | Your Submitted Events
+                                    <span style="vertical-align: middle;">
+                                            {% bs_icon 'calendar3' %}
+                                    </span>
+                                </a>  
+                                <a style="text-decoration:none; color:#E57200" href="{% url 'logout' %}" > | Logout
+                                    <span style="vertical-align: middle;">
+                                        {% bs_icon 'house-x' %}
+                                    </span>
+                                </a>
+                                <!-- <a style="text-decoration:none; color:#E57200" {# href="{% url 'map' %}"#} > | Search-->
+<!--                            </a> -->
+<!--                                <span style="vertical-align: middle;">-->
+<!--                                    {% bs_icon 'search' %}-->
+<!--                                </span>-->
+<!--                        </a>-->
+<!--                        <a style="text-decoration:none; color:#E57200" {# href="{% url 'map' %}"#} > | About-->
+<!--                                <span style="vertical-align: middle;">-->
+<!--                                    {% bs_icon 'patch-question' %}-->
+<!--                                </span>-->
+<!--                        </a>-->
+<!--                        <a style="text-decoration:none; color:#E57200; padding-right: 10px" {# href="{% url 'map' %}"#} > | Contact-->
+<!--                                <span style="vertical-align: middle;">-->
+<!--                                    {% bs_icon 'envelope' %}-->
+<!--                                </span>-->
+<!--                        </a>-->
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div style="padding-bottom: 10px;"></div>
+    </header>
+
+    {% block content %}
+
+    {% endblock content %}
+
+</header>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "map/base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'map/style.css' %}">
+
+<h1 style="font-family: serif;">Delete Events</h1>
+<form method="post" action="{% url 'delete-event' %}">
+    {% csrf_token %}
+    <ul class="admin-ul">
+        {% for event in all_events %}
+            <li class="admin-li">
+                <strong>Event Name: {{ event.event_name }}</strong>
+                <p>Event Description: {{ event.event_description }}</p>
+                {% if event.approved %}
+                    <span class="approved-event">Approved</span>
+                {% elif event.deny_reason %}
+                    <span class="denied-event">Denial Reason: {{ event.deny_reason }}</span>
+                {% else %}
+                    <span class="pending-event">Pending Approval</span>
+                {% endif %}
+                <br>
+                <button type="submit" class="delete-button" name="event_id" value="{{ event.id }}">Delete</button>
+            </li>
+        {% endfor %}
+    </ul>
+</form>
+<a href="{% url 'home' %}" class="home-button">Back to Home</a>
+{% endblock %}

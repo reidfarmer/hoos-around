@@ -1,0 +1,193 @@
+<!--
+Title: CSS Reference
+URL: https://www.w3schools.com/cssref/index.php
+This site was used to assist in the CSS implementation
+-->
+{% extends "map/base.html" %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'map/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'map/map.css' %}">
+    <div>
+        <script src="{%  static 'map/viewMap.js' %}">  </script>
+        <input type="hidden" id="data" value="{{ data }}">
+        <script>initViewMap()</script>
+    </div>    
+
+    <div id="map" class="map" style="margin-top: 53px">
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initViewMap&v=weekly"
+        defer
+        ></script>
+    </div>
+
+    <div>
+        <!-- # Sources for filter functionality
+    # Title: Dropdown select option to filter a Django list
+    # URL: https://stackoverflow.com/questions/33726759/dropdown-select-option-to-filter-a-django-list
+    # Used for reference when creating filters for event category for user convenience -->
+        <form action="{% url 'map'%}" method="get">
+            <label for="category" style="font-size: 30px; font-family: serif;">Filter Event Category:</label>
+            <select name="category_filter" style="font-size: 16px; padding: 4px; font-family: serif; border-radius: 6px; background-color: #b0b1b5;">
+                <option value="all">All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category }}">{{ category|title }}</option>
+                {% endfor %}
+            </select>
+            <button class="custom-create-btn" type="submit">Filter</button>
+<!--            <input type="submit" value=" Filter " style="font-size: 16px; padding: 6px; font-family: serif; border-radius: 6px; color: #E57200; background-color: #232D4B; border: none; cursor: pointer;">-->
+        </form>
+    </div>
+
+<div class="container-display">
+    <div class="form" display="block" style="background-color: #232D4B;">
+        <h1 style="color:#E57200; font-family: serif; text-align:center"> Click on the Map's Markers to Display Event Information</h1>
+        {% for event in events %}
+            <div id="{{ event.latitude }}, {{ event.longitude }}" class="event" style="margin-left:10px; color:#E57200; font-family: serif;
+                    font-size: 20px">
+                <strong> <span class="underlined"> Event Name:</span> </strong> {{ event.event_name }} <br>
+                <strong> <span class="underlined"> Description:</span> </strong> {{ event.event_description }} <br>
+                <strong> <span class="underlined"> Event Category:</span> </strong> {{ event.category|title }} <br>
+                <strong> <span class="underlined"> Location:</span> </strong> {{ event.location_name }} <br>
+                <strong> <span class="underlined"> Address:</span> </strong> {{ event.event_address }} <br>
+                <strong> <span class="underlined"> Date & Time:</span> </strong> {{ event.event_date_and_time }} <br>
+                <strong> <span class="underlined"> Point of Contact:</span> </strong> {{ event.point_of_contact }} <br>
+                <strong> <span class="underlined"> Attendance Requirements:</span> </strong> {{ event.requirements }} <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--               Latitude: {{ event.latitude }} <br>-->
+<!--               Longitude: {{ event.longitude }} <br>-->
+            </div>
+        {% endfor %}
+    </div>
+        
+    <div class="table-container">
+        <table  class="styled-table">
+            <tr>
+                <th>Category</th>
+                <th>Icon</th>
+            </tr>
+            <tr>
+                <td>
+                    <p>Academic</p>
+                </td>
+                <td>
+                    <img src="https://cdn4.iconfinder.com/data/icons/miscellaneous-iv-glyph/160/graduation-cap-512.png" class="image-style">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Art</p>
+                </td>
+                <td>
+                    <img src="https://cdn-icons-png.flaticon.com/512/4893/4893176.png" class="image-style">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Career</p>
+                </td>
+                <td>
+                    <img src="https://static.thenounproject.com/png/199301-200.png" class="image-style">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Club</p>
+                </td>
+                <td>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3990/3990972.png" class="image-style">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Food</p>
+                </td>
+                <td>
+                    <img src="https://openclipart.org/image/800px/289282" class="image-style">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Music</p>
+                </td>
+                <td>
+                    <img src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3431524/music-icon-md.png" class="image-style">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Social</p>
+                </td>
+                <td>
+                    <img src="https://cdn-icons-png.flaticon.com/512/33/33308.png" class="image-style">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Sports</p>
+                </td>
+                <td>
+                    <img src="https://cdn-icons-png.flaticon.com/512/857/857492.png" class="image-style">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Volunteer</p>
+                </td>
+                <td>
+                    <img src="https://cdn2.iconfinder.com/data/icons/cv-curriculum-vitae/100/set-cv2-06-512.png" class="image-style">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Other</p>
+                </td>
+                <td>
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/016/314/852/small/map-pointer-icon-gps-location-symbol-maps-pin-location-map-icon-free-png.png" class="image-style">
+                </td>
+            </tr>
+        </table>
+    </div> 
+</div>
+
+    <style>
+        .container-display {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px; /* Adjust as needed */
+            margin: 0 auto;
+        }
+        .form, .table-container {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            max-height: 100%;
+            overflow-x: auto;
+        }
+        .styled-table {
+            border-collapse: collapse;
+            font-family: serif;
+            width: 100%;
+        }
+        .styled-table th, .styled-table td {
+            border: 1px solid #000000;
+            padding: 8px;
+            text-align: left;
+        }
+        .styled-table th {
+            background-color: #232D4B;
+            font-size: 20px;
+            color:#E57200;
+        }
+        .image-style {
+            max-width: 20px; 
+            max-height: 20px; 
+            width: auto;
+            height: auto;
+        }
+    </style>
+
+{% endblock content %}
+
+
